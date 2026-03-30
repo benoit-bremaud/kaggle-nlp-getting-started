@@ -57,6 +57,16 @@ def test_keyword_encoder_unseen_keyword():
     assert result.nnz == 0  # All zeros — unseen keyword
 
 
+def test_keyword_encoder_multiword_keyword():
+    """Multi-word keywords (e.g. 'oil spill') should be one feature, not split."""
+    df = pd.DataFrame({"keyword_clean": ["oil spill", "forest fire", "oil spill"]})
+    encoder = KeywordEncoder()
+    encoder.fit(df)
+    vocab = encoder.vectorizer_.vocabulary_
+    assert "oil spill" in vocab
+    assert "oil" not in vocab  # Should NOT be split
+
+
 def test_numeric_features():
     df = _sample_df()
     numeric = NumericFeatures()

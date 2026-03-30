@@ -45,7 +45,9 @@ class KeywordEncoder(BaseEstimator, TransformerMixin):
         self.keyword_col = keyword_col
 
     def fit(self, X: pd.DataFrame, y=None):
-        self.vectorizer_ = CountVectorizer(binary=True)
+        # WHY tokenizer + token_pattern=None: treat each keyword as a single token,
+        # not split on whitespace. Prevents "oil spill" from becoming two separate features.
+        self.vectorizer_ = CountVectorizer(binary=True, tokenizer=lambda x: [x], token_pattern=None)
         self.vectorizer_.fit(X[self.keyword_col])
         return self
 

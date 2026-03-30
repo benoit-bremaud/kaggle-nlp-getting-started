@@ -1,8 +1,8 @@
-# Kaggle Project: COMPETITION_NAME
+# Kaggle Project: NLP Getting Started — Disaster Tweets
 
-> **Competition:** [COMPETITION_NAME](https://www.kaggle.com/competitions/COMPETITION_NAME)
-> **Goal:** Describe the objective here.
-> **Metric:** Evaluation metric (e.g., accuracy, RMSE, AUC).
+> **Competition:** [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/competitions/nlp-getting-started)
+> **Goal:** Predict whether a tweet is about a real disaster (1) or not (0).
+> **Metric:** F1 score
 
 ## Pipeline
 
@@ -21,7 +21,7 @@ graph LR
 
 ```bash
 # 1. Clone this repo
-gh repo clone benoit-bremaud/kaggle-COMPETITION_NAME
+gh repo clone benoit-bremaud/kaggle-nlp-getting-started
 
 # 2. Setup environment
 make setup

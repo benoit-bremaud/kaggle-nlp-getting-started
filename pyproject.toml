@@ -27,6 +27,8 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 # Notebooks: imports in one cell are used in later cells — ruff can't see this (ADR-026)
 "notebooks/*.ipynb" = ["F401", "F821"]
+# sklearn convention uses uppercase X for feature matrices in fit/transform signatures
+"src/features.py" = ["N803"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]

@@ -14,3 +14,5 @@ Agent-agnostic, DIP-compliant. This file is the single source of truth for proje
 | 2026-03-31 | PR merged | #10 | First Kaggle submission — retrain on 100% data, generate `submission_001.csv` |
 | 2026-03-31 | Submission | #1 | Baseline submitted to Kaggle — CV F1: 0.7477 / LB F1: 0.7941 |
 | 2026-04-01 | Backlog update | #11–#15 | Phase 3 issues created: HP tuning, gradient boosting, advanced features, feature selection, ensemble |
+| 2026-04-01 | PR merged | #16 | HP tuning — GridSearchCV on LogisticRegression (C, solver, class_weight), best: C=1, balanced, lbfgs |
+| 2026-04-01 | Submission | #2 | Tuned LogReg submitted — CV F1: 0.7567 / LB F1: 0.7873 (regression vs baseline, class_weight=balanced too aggressive) |

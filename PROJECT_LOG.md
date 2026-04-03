@@ -17,3 +17,4 @@ Agent-agnostic, DIP-compliant. This file is the single source of truth for proje
 | 2026-04-01 | PR merged | #16 | HP tuning — GridSearchCV on LogisticRegression (C, solver, class_weight), best: C=1, balanced, lbfgs |
 | 2026-04-01 | Submission | #2 | Tuned LogReg submitted — CV F1: 0.7567 / LB F1: 0.7873 (regression vs baseline, class_weight=balanced too aggressive) |
 | 2026-04-02 | PR merged | #17 | Model comparison — XGBoost and LightGBM vs LogReg. Both tree-based models underperform on sparse TF-IDF (0.72 vs 0.75). LogReg remains best |
+| 2026-04-02 | PR merged | #18 | Advanced text features — char n-grams (3000), mention_count, hashtag_count. CV F1 0.7677 (+0.020 vs baseline). Best result so far |

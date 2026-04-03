@@ -27,7 +27,11 @@ def add_text_features(df: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
     Handles missing keywords by filling with empty string and URL-decoding.
     """
     df = df.copy()
-    df["text_clean"] = df[text_col].fillna("").apply(clean_text)
+    # Extract mention/hashtag counts from raw text (before cleaning strips them)
+    raw_text = df[text_col].fillna("")
+    df["mention_count"] = raw_text.str.count(r"@\w+")
+    df["hashtag_count"] = raw_text.str.count(r"#\w+")
+    df["text_clean"] = raw_text.apply(clean_text)
     df["text_len"] = df["text_clean"].str.len()
     df["word_count"] = df["text_clean"].str.split().str.len().fillna(0).astype(int)
     df["keyword_clean"] = df["keyword"].fillna("").apply(lambda x: unquote(str(x)))

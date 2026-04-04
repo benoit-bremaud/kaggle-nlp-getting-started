@@ -64,7 +64,7 @@ uv pip install -r requirements.txt
 ## Submission Workflow
 
 1. Generate predictions in the notebook (Section 9)
-2. The submission cell checks if predictions differ from the latest file — only saves a new numbered CSV if they do
+2. The submission cell compares predictions against the previous submission file (hardcoded path) — only saves a new numbered CSV if predictions differ. Update the comparison path and output filename when adding a new experiment
 3. Submit to Kaggle: `make submit COMPETITION=nlp-getting-started FILE=outputs/submissions/submission_NNN.csv` or upload via web
 4. Log both scores (CV F1 + LB F1) in `outputs/submissions/log.md`
 5. Update `PROJECT_LOG.md` with a Submission entry (ADR-029)

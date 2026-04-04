@@ -64,10 +64,10 @@ uv pip install -r requirements.txt
 ## Submission Workflow
 
 1. Generate predictions in the notebook (Section 9)
-2. Save to `outputs/submissions/submission.csv`
-3. Submit: `make submit COMPETITION=name FILE=outputs/submissions/submission.csv`
-4. Log the score in `outputs/submissions/log.md`
-5. Commit with: `feat(model): submit baseline RF — score 0.764`
+2. The submission cell checks if predictions differ from the latest file — only saves a new numbered CSV if they do
+3. Submit to Kaggle: `make submit COMPETITION=nlp-getting-started FILE=outputs/submissions/submission_NNN.csv` or upload via web
+4. Log both scores (CV F1 + LB F1) in `outputs/submissions/log.md`
+5. Update `PROJECT_LOG.md` with a Submission entry (ADR-029)
 
 ## Pull Request Template
 

@@ -20,3 +20,5 @@ Agent-agnostic, DIP-compliant. This file is the single source of truth for proje
 | 2026-04-02 | PR merged | #18 | Advanced text features — char n-grams (3000), mention_count, hashtag_count in `src/text.py` and `src/features.py` |
 | 2026-04-02 | Submission | #3 | Advanced features submitted — CV F1: 0.7677 / LB F1: 0.8039. New best LB, first above 0.80 |
 | 2026-04-04 | Decision | #15 | Closed ensemble issue as wontfix — tree-based models too weak for useful blend (separate from #14) |
+| 2026-04-04 | PR merged | #19 | Feature selection — SelectKBest(chi2) tested, leakage bug fixed via Pipeline. No improvement over full features. Full set (8226) confirmed optimal |
+| 2026-04-04 | Submission | #4 | Feature selection submitted — CV F1: 0.7710 (k=3000 with Pipeline) / LB F1: 0.8002 (regression vs #3). Full features remain best |

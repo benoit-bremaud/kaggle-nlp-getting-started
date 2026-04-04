@@ -69,6 +69,7 @@ make notebook
 ├── DECISIONS.md          # Project-specific architectural decisions
 ├── CONTRIBUTING.md       # Conventions for contributing
 ├── Makefile              # Automation commands
+├── setup.sh              # Environment setup script (called by make setup)
 ├── requirements.txt      # Python dependencies
 └── pyproject.toml        # Project config + ruff settings
 ```
@@ -87,9 +88,9 @@ make notebook
 
 ## Workflow
 
-For the full workflow, see [WORKFLOW.md](../WORKFLOW.md).
-
 Each experiment follows: branch → code → lint → test → Restart & Run All → commit → PR → CI green → merge → post-merge cleanup → update PROJECT_LOG.md.
+
+The full workflow and global decisions are defined in the parent directory (`~/Documents/07_kaggle/`): `WORKFLOW.md` and `DECISIONS.md` (ADR-001 to ADR-029).
 
 ## Documentation
 
@@ -98,8 +99,6 @@ Each experiment follows: branch → code → lint → test → Restart & Run All
 | [PROJECT_LOG.md](PROJECT_LOG.md) | Chronological activity log (PRs, submissions, decisions) |
 | [DECISIONS.md](DECISIONS.md) | Project-specific architectural decisions |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Git conventions, code quality, submission workflow |
-| [Global DECISIONS.md](../DECISIONS.md) | Decisions applying to all Kaggle projects (ADR-001 to ADR-029) |
-| [Global WORKFLOW.md](../WORKFLOW.md) | Step-by-step workflow for all Kaggle projects |
 
 ## License
 

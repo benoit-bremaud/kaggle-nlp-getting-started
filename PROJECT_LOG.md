@@ -23,3 +23,5 @@ Agent-agnostic, DIP-compliant. This file is the single source of truth for proje
 | 2026-04-04 | PR merged | #19 | Feature selection — SelectKBest(chi2) tested, leakage bug fixed via Pipeline. No improvement over full features. Full set (8226) confirmed optimal |
 | 2026-04-04 | Submission | #4 | Feature selection submitted — CV F1: 0.7710 (k=3000 with Pipeline) / LB F1: 0.8002 (regression vs #3). Full features remain best |
 | 2026-04-04 | PR merged | #20 | Documentation update — README, CONTRIBUTING, CLAUDE.md aligned with project state. Broken links fixed, CV F1 #4 corrected |
+| 2026-04-04 | Decision | #15 | Closed ensemble issue as wontfix |
+| 2026-04-04 | Backlog update | #21–#22 | Phase 4 issues created: BERT embeddings + LogReg (#21), fine-tune DistilBERT (#22) |

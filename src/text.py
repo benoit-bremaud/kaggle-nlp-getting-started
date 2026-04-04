@@ -23,14 +23,14 @@ def clean_text(text: str) -> str:
 def add_text_features(df: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
     """Add text-derived columns to a dataframe.
 
-    Adds: text_clean, text_len, word_count, keyword_clean.
+    Adds: text_clean, text_len, word_count, keyword_clean, mention_count, hashtag_count.
     Handles missing keywords by filling with empty string and URL-decoding.
     """
     df = df.copy()
     # Extract mention/hashtag counts from raw text (before cleaning strips them)
-    raw_text = df[text_col].fillna("")
-    df["mention_count"] = raw_text.str.count(r"@\w+")
-    df["hashtag_count"] = raw_text.str.count(r"#\w+")
+    raw_text = df[text_col].fillna("").astype(str)
+    df["mention_count"] = raw_text.str.count(r"@\w+").fillna(0).astype(int)
+    df["hashtag_count"] = raw_text.str.count(r"#\w+").fillna(0).astype(int)
     df["text_clean"] = raw_text.apply(clean_text)
     df["text_len"] = df["text_clean"].str.len()
     df["word_count"] = df["text_clean"].str.split().str.len().fillna(0).astype(int)

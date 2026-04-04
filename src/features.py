@@ -80,7 +80,7 @@ class KeywordEncoder(BaseEstimator, TransformerMixin):
 
 
 class NumericFeatures(BaseEstimator, TransformerMixin):
-    """Extract numeric columns (text_len, word_count) as sparse matrix."""
+    """Extract numeric columns (text_len, word_count, mention_count, hashtag_count) as sparse matrix."""
 
     def __init__(self, cols: list[str] | None = None):
         self.cols = cols or ["text_len", "word_count", "mention_count", "hashtag_count"]

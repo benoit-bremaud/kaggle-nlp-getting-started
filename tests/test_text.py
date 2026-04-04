@@ -38,3 +38,27 @@ def test_add_text_features_decodes_url_encoded_keywords():
     df = pd.DataFrame({"text": ["test"], "keyword": ["oil%20spill"]})
     result = add_text_features(df)
     assert result["keyword_clean"].iloc[0] == "oil spill"
+
+
+def test_add_text_features_mention_count():
+    df = pd.DataFrame(
+        {
+            "text": ["@user1 hello @user2", "no mentions here"],
+            "keyword": ["fire", "flood"],
+        }
+    )
+    result = add_text_features(df)
+    assert result["mention_count"].iloc[0] == 2
+    assert result["mention_count"].iloc[1] == 0
+
+
+def test_add_text_features_hashtag_count():
+    df = pd.DataFrame(
+        {
+            "text": ["#disaster #flood is bad", "nothing special"],
+            "keyword": ["flood", "test"],
+        }
+    )
+    result = add_text_features(df)
+    assert result["hashtag_count"].iloc[0] == 2
+    assert result["hashtag_count"].iloc[1] == 0

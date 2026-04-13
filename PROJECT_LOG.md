@@ -25,3 +25,4 @@ Agent-agnostic, DIP-compliant. This file is the single source of truth for proje
 | 2026-04-04 | PR merged | #20 | Documentation update — README, CONTRIBUTING, CLAUDE.md aligned with project state. Broken links fixed, CV F1 #4 corrected |
 | 2026-04-04 | Decision | #15 | Closed ensemble issue as wontfix |
 | 2026-04-04 | Backlog update | #21–#22 | Phase 4 issues created: BERT embeddings + LogReg (#21), fine-tune DistilBERT (#22) |
+| 2026-04-13 | Submission | #5 | Phase 4 — DistilBERT embeddings. TF-IDF 0.7677 / BERT 0.7862 / Concat 0.7865 CV F1. submission_005.csv uses concat, LB pending |

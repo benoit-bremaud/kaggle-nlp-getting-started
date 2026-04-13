@@ -32,3 +32,8 @@ ignore = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: tests that require model downloads or GPU (run with --run-slow)",
+]

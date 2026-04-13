@@ -1,13 +1,17 @@
 """Tests for src/features.py — feature engineering pipeline."""
 
+import numpy as np
 import pandas as pd
+import pytest
 import scipy.sparse as sp
 
 from src.features import (
+    BertEmbeddingTransformer,
     CharTfidfTransformer,
     KeywordEncoder,
     NumericFeatures,
     TextTfidfTransformer,
+    build_bert_feature_matrix,
     build_feature_matrix,
 )
 
@@ -119,3 +123,64 @@ def test_build_feature_matrix():
     assert x_train.shape[0] == 3
     assert x_test.shape[0] == 1
     assert x_train.shape[1] == x_test.shape[1]
+
+
+# --- BERT tests (marked slow — require model download on first run) ---
+
+
+@pytest.mark.slow
+def test_bert_embedding_transformer_fit_transform():
+    """BERT transformer should produce dense (N, 768) embeddings."""
+    df = _sample_df()
+    bert = BertEmbeddingTransformer(batch_size=2)
+    bert.fit(df)
+    result = bert.transform(df)
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (3, 768)
+    assert not np.isnan(result).any()
+
+
+@pytest.mark.slow
+def test_bert_embedding_transformer_unseen_data():
+    """BERT should handle unseen text without errors."""
+    train = _sample_df()
+    test = pd.DataFrame({"text_clean": ["completely new text never seen"]})
+    bert = BertEmbeddingTransformer(batch_size=2)
+    bert.fit(train)
+    result = bert.transform(test)
+    assert result.shape == (1, 768)
+
+
+@pytest.mark.slow
+def test_bert_embedding_deterministic():
+    """Same input should produce same embeddings (model is frozen)."""
+    df = _sample_df()
+    bert = BertEmbeddingTransformer(batch_size=2)
+    bert.fit(df)
+    result1 = bert.transform(df)
+    result2 = bert.transform(df)
+    np.testing.assert_array_almost_equal(result1, result2)
+
+
+@pytest.mark.slow
+def test_build_bert_feature_matrix():
+    """Full BERT pipeline should produce dense arrays with consistent dims."""
+    train = _sample_df()
+    test = pd.DataFrame(
+        {
+            "text_clean": ["new tweet"],
+            "keyword_clean": ["fire"],
+            "text_len": [9],
+            "word_count": [2],
+            "mention_count": [0],
+            "hashtag_count": [1],
+        }
+    )
+    x_train, x_test, *_ = build_bert_feature_matrix(train, test, batch_size=2)
+    assert isinstance(x_train, np.ndarray)
+    assert isinstance(x_test, np.ndarray)
+    assert x_train.shape[0] == 3
+    assert x_test.shape[0] == 1
+    assert x_train.shape[1] == x_test.shape[1]
+    # 768 (BERT) + 3 (keywords) + 4 (numeric) = 775
+    assert x_train.shape[1] == 768 + 3 + 4
